@@ -9,35 +9,10 @@ management:
     web:
       exposure:
         include: '*'
-#    caching mechanism
-cache:
-  type: REDIS
-  redis:
-    time-to-live: 6_00_000 # 10 min cache
-    cache-null-values: false
-#        logging setting
-logging:
-  level:
-    web: DEBUG
-    root: INFO
-#        cloud setting
+# cloud setting
 eureka:
   client:
     service-url:
       defaultZone: ${SPRING_EUREKA_CLIENT_URL:http://localhost:8761/eureka/}
   instance:
     prefer-ip-address: true
-#       spring config
-spring:
-  jackson:
-    property-naming-strategy: SNAKE_CASE
-  datasource:
-    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/scm}
-    username: ${SPRING_DATASOURCE_USERNAME:alex}
-    password: ${SPRING_DATASOURCE_PASSWORD:alex}
-    driver-class-name: ${SPRING_DATASOURCE_DRIVER_NAME:org.postgresql.Driver}
-  jpa:
-    database-platform: ${SPRING_JPA_DIALECT:org.hibernate.dialect.PostgreSQLDialect}
-    hibernate:
-      ddl-auto: update
-    show-sql: true
