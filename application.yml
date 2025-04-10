@@ -15,4 +15,4 @@ eureka:
     service-url:
       defaultZone: ${SPRING_EUREKA_CLIENT_URL:http://registry-service:8761/eureka/}
   instance:
-    prefer-ip-address: true
+    prefer-ip-address: ${EUREKA_INSTANCE_PREFER_IP_ADDRESS:true}
