@@ -1,1 +1,5 @@
 #basic user service config
+eureka:
+  client:
+    service-url:
+      defaultZone: ${SPRING_EUREKA_CLIENT_URL:http://localhost:8761/eureka/}
