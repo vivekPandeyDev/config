@@ -1,0 +1,21 @@
+# actuator info
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+  endpoints:
+    web:
+      exposure:
+        include: info, health, loggers, metrics, prometheus, env, beans, configprops, threaddump
+  endpoint:
+    health:
+      show-details: always   # Shows details like diskSpace, db, etc.
+  info:
+    env:
+      enabled: true
+
+# cloud setting
+eureka:
+  client:
+    service-url:
+      defaultZone: ${SPRING_EUREKA_CLIENT_URL:http://localhost:8761/eureka/}
