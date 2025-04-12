@@ -69,5 +69,3 @@ spring:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       topic: user
-  config:
-    import: optional:configserver:${SPRING_CLOUD_CONFIG_URI:http://localhost:4002}
