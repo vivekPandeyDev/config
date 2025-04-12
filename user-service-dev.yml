@@ -5,6 +5,11 @@ info:
     version: 1.0.0
 
 spring:
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: true
   application:
       name: user-service
   config:
