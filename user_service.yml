@@ -6,60 +6,8 @@ info:
 
 server:
   port: 8081
+
 eureka:
   client:
     fetch-registry: true
     register-with-eureka: true
-minio:
-  endpoint: ${MINIO_URI:http://localhost:9000}
-  accessKey: minioadmin
-  secretKey: minioadmin
-  bucketName: users
-
-spring:
-  application:
-    name: user-service
-  messages:
-    basename: messages
-    encoding: UTF-8
-  datasource:
-    url: ${DB_URI:jdbc:postgresql://localhost:5432/book-club}
-    username: postgres
-    password: password
-    driver-class-name: org.postgresql.Driver
-    hikari:
-      minimum-idle: 5
-      maximum-pool-size: 20
-      idle-timeout: 30000
-      pool-name: HikariPool-19
-  jpa:
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
-    hibernate:
-      ddl-auto: update
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    show-sql: true
-  servlet:
-    multipart:
-      max-file-size: 50MB
-      max-request-size: 100MB
-  kafka:
-    bootstrap-servers: ${KAFKA_URI:localhost:9092}
-    consumer:
-      group-id: user-service-group
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-      properties:
-        spring:
-          json:
-            trusted:
-              packages: '*'
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      topic: user
-  config:
-    import: optional:configserver:${SPRING_CLOUD_CONFIG_URI:http://localhost:4002}
-
