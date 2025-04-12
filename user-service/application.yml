@@ -1,22 +1,31 @@
 info:
   app:
     name: user-service
-    description: User Service Microservice dev setup
+    description: User Service Microservice
     version: 1.0.0
 
+# jakarta server port
+server:
+  port: 8081
+# eureka client registration
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+# enable minio cleint
+minio:
+  endpoint: ${MINIO_URI:http://localhost:9000}
+  accessKey: minioadmin
+  secretKey: minioadmin
+  bucketName: users
+
 spring:
-  devtools:
-    restart:
-      enabled: true
-    livereload:
-      enabled: true
   application:
-      name: user-service
-  config:
-    import: optional:configserver:${SPRING_CLOUD_CONFIG_URI:http://localhost:4002}
+    name: user-service
   messages:
     basename: messages
     encoding: UTF-8
+#  spring data source
   datasource:
     url: ${DB_URI:jdbc:postgresql://localhost:5432/book-club}
     username: postgres
@@ -27,6 +36,7 @@ spring:
       maximum-pool-size: 20
       idle-timeout: 30000
       pool-name: HikariPool-19
+# spring jpa
   jpa:
     properties:
       hibernate:
@@ -36,14 +46,15 @@ spring:
       ddl-auto: update
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
+# spring file size
   servlet:
     multipart:
       max-file-size: 50MB
-      max-request-size: 100MB   
-# kafka
+      max-request-size: 100MB
+# spring kafka config
   kafka:
-    bootstrap-servers: ${localhost:9092:kafka:9092}
-
+    bootstrap-servers: ${KAFKA_URI:localhost:9092}
+#    consumer setting
     consumer:
       group-id: user-service-group
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
@@ -53,22 +64,11 @@ spring:
           json:
             trusted:
               packages: '*'
+#   producer setting
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       topic: user
-
-server:
-    port: 8081        
-
-eureka:
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-
-# MinIO Configuration
-minio:
-  endpoint: ${MINIO_URI:http://localhost:9000}
-  accessKey: minioadmin
-  secretKey: minioadmin
-  bucketName: users
+  config:
+    import: optional:configserver:${SPRING_CLOUD_CONFIG_URI:http://localhost:4002}
+  

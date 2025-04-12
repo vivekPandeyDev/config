@@ -1,24 +1,6 @@
-# actuator info
-management:
-  zipkin:
-    tracing:
-      endpoint: ${ZIPKIN_URI:http://localhost:9411/api/v2/spans}
-  tracing:
-    sampling:
-      probability: 1.0
-  endpoints:
-    web:
-      exposure:
-        include: info, health, loggers, metrics, prometheus, env, beans, configprops, threaddump
-  endpoint:
-    health:
-      show-details: always   # Shows details like diskSpace, db, etc.
-  info:
-    env:
+spring:
+  devtools:
+    restart:
       enabled: true
-
-# cloud setting
-eureka:
-  client:
-    service-url:
-      defaultZone: ${SPRING_EUREKA_CLIENT_URL:http://localhost:8761/eureka/}
+    livereload:
+      enabled: true
