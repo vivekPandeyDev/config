@@ -1,7 +1,7 @@
 info:
   app:
     name: user-service
-    description: User Service Microservice
+    description: User Service Microservice dev setup
     version: 1.0.0
 
 spring:
