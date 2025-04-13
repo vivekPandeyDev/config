@@ -56,7 +56,9 @@ spring:
     bootstrap-servers: ${KAFKA_URI:localhost:9092}
     #    consumer setting
     consumer:
-      group-id: user-service-group
+      user-listen-topic: user-events
+      group-id: book-service-group
+      auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
@@ -68,4 +70,4 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
-      topic: user
+      topic: book-events
